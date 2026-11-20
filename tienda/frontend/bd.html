@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="NEXUS GEAR MX - Panel de Inspección de Base de Datos SQLite (13 Tablas en 3FN) para Exposición Escolar.">
+  <title>Base de Datos SQLite (13 Tablas) | NEXUS GEAR MX</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css">
+
+  <style>
+    .db-badge-pill {
+      background: rgba(0, 242, 254, 0.15);
+      border: 1px solid var(--accent-cyan);
+      color: var(--accent-cyan);
+      padding: 0.25rem 0.75rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      font-family: var(--font-mono);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .db-hero {
+      padding: 3rem 0 2rem;
+      background: radial-gradient(circle at 50% 0%, rgba(0, 242, 254, 0.12) 0%, transparent 60%);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .db-grid-13 {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.25rem;
+      margin: 2rem 0;
+    }
+    .table-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 1.25rem;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      position: relative;
+    }
+    .table-card:hover, .table-card.active-table {
+      border-color: var(--accent-cyan);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 20px rgba(0, 242, 254, 0.15);
+    }
+    .table-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.75rem;
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 0.5rem;
+    }
+    .table-name {
+      font-family: var(--font-mono);
+      font-weight: 700;
+      color: var(--accent-cyan);
+      font-size: 1.05rem;
+    }
+    .table-rows-count {
+      background: var(--bg-surface-elevated);
+      padding: 0.2rem 0.55rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.75rem;
+      font-family: var(--font-mono);
+      color: var(--text-secondary);
+      border: 1px solid var(--border-subtle);
+    }
+    .table-card-body {
+      font-size: 0.8125rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+    .table-card-footer {
+      margin-top: 0.75rem;
+      padding-top: 0.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+    .code-box {
+      background: #090d16;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 1.25rem;
+      font-family: var(--font-mono);
+      font-size: 0.8438rem;
+      color: #38bdf8;
+      overflow-x: auto;
+      line-height: 1.6;
+    }
+    .data-table-container {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      overflow-x: auto;
+      margin-top: 1rem;
+      max-height: 480px;
+    }
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.8125rem;
+      text-align: left;
+    }
+    .data-table th {
+      background: #090d16;
+      color: var(--accent-cyan);
+      padding: 0.75rem 1rem;
+      font-family: var(--font-mono);
+      position: sticky;
+      top: 0;
+      border-bottom: 1px solid var(--border-accent);
+      white-space: nowrap;
+    }
+    .data-table td {
+      padding: 0.65rem 1rem;
+      border-bottom: 1px solid var(--border-subtle);
+      color: var(--text-primary);
+      white-space: nowrap;
+    }
+    .data-table tr:hover {
+      background: rgba(0, 242, 254, 0.04);
+    }
+    .decision-card {
+      background: var(--bg-surface);
+      border-left: 4px solid var(--accent-cyan);
+      padding: 1.25rem 1.5rem;
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+      margin-bottom: 1rem;
+    }
+    .decision-title {
+      font-weight: 800;
+      color: #fff;
+      font-size: 1rem;
+      margin-bottom: 0.4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .decision-desc {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+    .sql-input {
+      width: 100%;
+      background: #090d16;
+      color: #00f2fe;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      padding: 0.75rem;
+      font-family: var(--font-mono);
+      font-size: 0.875rem;
+      margin-bottom: 0.75rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Announcement Bar -->
+  <div class="top-announcement">
+    <div class="container announcement-content">
+      <div class="announcement-item">
+        <span class="badge-pill">ESQUEMA SQLITE</span>
+        <span>Demostración Académica de Arquitectura Relacional (13 Tablas en 3FN)</span>
+      </div>
+      <div class="announcement-item hide-mobile">
+        <span class="icon">⚡</span>
+        <span>PRAGMA foreign_keys = ON activo en cada conexión</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="main-header">
+    <div class="container header-grid">
+      <a href="index.html" class="brand-logo">
+        <div class="logo-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="12 2 2 7 12 12 22 7 12 2" stroke="url(#cyanGrad)"></polygon>
+            <polyline points="2 17 12 22 22 17" stroke="url(#cyanGrad)"></polyline>
+            <polyline points="2 12 12 17 22 12" stroke="url(#cyanGrad)"></polyline>
+            <defs>
+              <linearGradient id="cyanGrad" x1="2" y1="2" x2="22" y2="22" gradientUnits="userSpaceOnUse"><stop stop-color="#00f2fe"/><stop offset="1" stop-color="#4facfe"/></linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <div class="logo-text">
+          <span class="brand-name">NEXUS<span class="highlight">GEAR</span></span>
+          <span class="brand-tag">SQLITE EXPLORER</span>
+        </div>
+      </a>
+
+      <nav class="nav-links-desktop hide-mobile hide-tablet">
+        <a href="index.html" class="nav-link">Inicio</a>
+        <a href="catalogo.html" class="nav-link">Catálogo</a>
+        <a href="cuenta.html" class="nav-link">Mi Cuenta</a>
+        <a href="ayuda.html" class="nav-link">Ayuda</a>
+        <a href="bd.html" class="nav-link active admin-only" style="color:var(--accent-cyan); font-weight:700;">📊 Base de Datos</a>
+      </nav>
+
+      <div class="header-actions">
+        <a href="index.html" class="btn btn-outline" style="font-size:0.8125rem; padding:0.4rem 0.85rem;">← Volver a la Tienda</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="db-hero">
+      <div class="container">
+        <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:1.5rem;">
+          <div>
+            <div class="db-badge-pill" style="margin-bottom:0.75rem;">
+              <span>🗄️ SQLite 3.50+ • Motor Relacional</span>
+            </div>
+            <h1 style="font-size:2.2rem; font-weight:800; color:#fff; margin-bottom:0.75rem;">
+              Arquitectura de Base de Datos (<span class="gradient-text">13 Tablas</span>)
+            </h1>
+            <p style="max-width:700px; color:var(--text-secondary); font-size:0.95rem; line-height:1.6;">
+              Panel de control y visualizador en tiempo real para la exposición del trabajo escolar. Muestra las 13 tablas en Tercera Forma Normal (3FN), integridad referencial activa, llaves foráneas y registros almacenados.
+            </p>
+          </div>
+
+          <div style="background:var(--bg-surface); border:1px solid var(--border-accent); border-radius:var(--radius-md); padding:1rem 1.5rem; text-align:center;">
+            <div style="font-size:2.25rem; font-weight:800; color:var(--accent-cyan); font-family:var(--font-mono);" id="dbStatusTotalTables">13</div>
+            <div style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.5px;">Tablas Relacionadas</div>
+            <div style="margin-top:0.4rem; font-size:0.75rem; color:var(--color-success);">● Base de Datos Conectada</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 1: LAS 13 TABLAS EN TIEMPO REAL -->
+    <section class="home-section" style="padding:2.5rem 0;">
+      <div class="container">
+        
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <h2>Explorador de Tablas (Haz clic en una tabla para ver sus filas)</h2>
+            <p>Monitoreo en vivo de los datos almacenados en el archivo <code>tienda.db</code>.</p>
+          </div>
+        </div>
+
+        <div class="db-grid-13" id="tablesCardsGrid">
+          <div style="grid-column:1/-1; text-align:center; padding:2rem; color:var(--text-muted);">
+            Cargando resumen de tablas desde SQLite...
+          </div>
+        </div>
+
+        <!-- VISOR DINÁMICO DE FILAS DE LA TABLA SELECCIONADA -->
+        <div id="tableDataViewerSection" style="margin-top:2.5rem; display:none;">
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; margin-bottom:0.75rem;">
+            <div>
+              <h3 style="font-size:1.35rem; font-weight:800; color:#fff;" id="activeTableTitle">Tabla: productos</h3>
+              <p style="font-size:0.8438rem; color:var(--text-muted);" id="activeTableSubtitle">Estructura y registros almacenados en SQLite</p>
+            </div>
+            <div style="display:flex; gap:0.5rem;">
+              <button class="btn btn-outline" onclick="refreshActiveTableData()" style="padding:0.4rem 0.85rem; font-size:0.8125rem;">🔄 Recargar</button>
+            </div>
+          </div>
+
+          <!-- Estructura de Columnas y Tipos -->
+          <div style="margin-bottom:1rem;" id="tableColumnsSchemaWrapper"></div>
+
+          <!-- Tabla de Datos -->
+          <div class="data-table-container">
+            <table class="data-table" id="activeDataTable">
+              <thead id="activeDataTableHead"></thead>
+              <tbody id="activeDataTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECCIÓN 2: DIAGRAMA DE RELACIONES -->
+    <section class="home-section" style="padding:2rem 0; background:rgba(0,0,0,0.2);">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <h2>Diagrama de Relaciones e Integridad Referencial</h2>
+            <p>Estructura conceptual donde <code>──&lt;</code> denota relación uno a muchos (1:N) y las tablas intermedias resuelven relaciones N:M.</p>
+          </div>
+        </div>
+
+        <div class="code-box">
+usuarios ──&lt; direcciones (1:N, ON DELETE CASCADE)
+usuarios ──1 preferencias (1:1, PK es FK a usuarios)
+usuarios ──&lt; pedidos ──&lt; pedido_items &gt;── productos (Snapshot de precio y congelamiento histórico)
+usuarios ──&lt; favoritos &gt;── productos (N:M con PK compuesta usuario_id, producto_id)
+usuarios ──&lt; resenas &gt;── productos (1:N, cálculo dinámico de AVG y COUNT)
+productos ──&lt; producto_specs (1:N, ficha técnica)
+productos ──&lt; producto_fotos (1:N, galería de imágenes)
+cupones ──&lt; pedidos (1:N, descuentos por porcentaje o monto)
+categorias ──&lt; productos (1:N, navegación por slug)
+(sueltas) tickets_soporte (Atención al cliente y formularios)
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 3: DECISIONES DE DISEÑO PARA EXPONER -->
+    <section class="home-section" style="padding:2.5rem 0;">
+      <div class="container">
+        
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <h2>Decisiones Técnicas Clave (Puntos a Exponer en Clase)</h2>
+            <p>Justificaciones de diseño relacional, seguridad y buenas prácticas de software para tu presentación.</p>
+          </div>
+        </div>
+
+        <div class="decision-card">
+          <div class="decision-title">
+            <span>🛡️</span> 1. Precios Congelados en <code>pedido_items</code> (Integridad Histórica)
+          </div>
+          <div class="decision-desc">
+            Se almacena <code>precio_unitario</code> y <code>nombre_producto</code> en cada renglón de compra. Si en el futuro el administrador cambia el precio de un audífono de $639 a $899 en la tabla <code>productos</code>, los pedidos pasados conservan exactamente el precio pagado en ese instante.
+          </div>
+        </div>
+
+        <div class="decision-card">
+          <div class="decision-title">
+            <span>🛒</span> 2. El Carrito no tiene Tabla (Persistencia en el Cliente)
+          </div>
+          <div class="decision-desc">
+            Tanto el Carrito como la función "Guardar para después" residen en el navegador (LocalStorage). Solo viajan a SQLite mediante una transacción segura en <code>POST /api/pedidos</code> cuando el usuario confirma la compra, evitando sobrecargar la base de datos con carritos abandonados.
+          </div>
+        </div>
+
+        <div class="decision-card">
+          <div class="decision-title">
+            <span>🔒</span> 3. Cumplimiento de Seguridad PCI-DSS (Sin Tarjetas en la BD)
+          </div>
+          <div class="decision-desc">
+            Nunca se guarda el número de tarjeta (PAN), fecha ni CVV en la base de datos. Para pagos reales se utiliza una pasarela (Stripe, Mercado Pago o Kueski); la base de datos almacena únicamente el método utilizado ('tarjeta', 'oxxo', 'contra_entrega') y los meses sin intereses.
+          </div>
+        </div>
+
+        <div class="decision-card">
+          <div class="decision-title">
+            <span>👤</span> 4. Compras de Invitados (usuario_id NULL)
+          </div>
+          <div class="decision-desc">
+            Si una persona compra sin crear cuenta, el pedido registra <code>usuario_id = NULL</code> pero almacena obligatoriamente <code>nombre_contacto</code>, <code>correo_contacto</code> y <code>telefono_contacto</code>. Así el negocio siempre puede contactar al cliente y generar su guía de envío.
+          </div>
+        </div>
+
+        <div class="decision-card">
+          <div class="decision-title">
+            <span>📐</span> 5. Normalización en Tercera Forma Normal (3FN)
+          </div>
+          <div class="decision-desc">
+            Las 13 tablas eliminan dependencias transitivas y multivaluadas. Las calificaciones de productos no se almacenan como números estáticos, sino que se calculan con <code>ROUND(AVG(calificacion), 1)</code> y <code>COUNT(id)</code> sobre la tabla <code>resenas</code>. La copia de dirección en <code>pedidos</code> no viola 3FN porque es una fotografía histórica en el tiempo (un cambio de casa del cliente no debe alterar facturas pasadas).
+          </div>
+        </div>
+
+        <div class="decision-card">
+          <div class="decision-title">
+            <span>⚡</span> 6. Activación Obligatoria de <code>PRAGMA foreign_keys = ON;</code>
+          </div>
+          <div class="decision-desc">
+            Por compatibilidad histórica, SQLite desactiva las llaves foráneas por defecto en cada nueva conexión. Nuestro módulo <code>database.py</code> ejecuta explícitamente <code>PRAGMA foreign_keys = ON;</code> al abrir cada conexión, impidiendo que se inserten productos con categorías inexistentes o pedidos con usuarios huérfanos.
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECCIÓN 4: CONSOLA DE PRUEBAS SQL EN VIVO -->
+    <section class="home-section" style="padding:2rem 0; background:rgba(0,0,0,0.2);">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <h2>Consola Interactiva de Consultas SQL (Solo Lectura)</h2>
+            <p>Escribe cualquier consulta <code>SELECT</code> para demostrar el funcionamiento de la base de datos ante el profesor.</p>
+          </div>
+        </div>
+
+        <div style="background:var(--bg-surface); border:1px solid var(--border-subtle); border-radius:var(--radius-md); padding:1.5rem;">
+          <div style="display:flex; gap:0.5rem; flex-wrap:wrap; margin-bottom:0.75rem;">
+            <button class="cat-pill active" onclick="setQuery('SELECT id, nombre, precio, stock, popularidad FROM productos ORDER BY precio DESC;')">Productos ordenados por precio</button>
+            <button class="cat-pill" onclick="setQuery('SELECT p.id, p.nombre, ROUND(AVG(r.calificacion),1) AS rating, COUNT(r.id) AS resenas FROM productos p LEFT JOIN resenas r ON r.producto_id = p.id GROUP BY p.id;')">Cálculo dinámico de calificaciones (AVG)</button>
+            <button class="cat-pill" onclick="setQuery('SELECT folio, nombre_contacto, tipo_envio, total, estado FROM pedidos;')">Pedidos e historial de compras</button>
+            <button class="cat-pill" onclick="setQuery('SELECT * FROM cupones WHERE activo = 1;')">Cupones activos</button>
+          </div>
+
+          <textarea id="sqlConsoleInput" rows="3" class="sql-input">SELECT id, nombre, precio, stock, popularidad FROM productos ORDER BY precio DESC;</textarea>
+          <button class="btn btn-primary" onclick="runCustomSql()">▶ Ejecutar Consulta SQL</button>
+
+          <div id="sqlResultContainer" style="margin-top:1.25rem;"></div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="main-footer" style="margin-top:3rem;">
+    <div class="container footer-bottom-flex">
+      <p class="copyright">© 2026 NEXUS GEAR MX. Base de Datos Relacional SQLite para Comercio Electrónico.</p>
+      <div class="footer-badges">
+        <span class="tag-tech">SQLite 3.50</span>
+        <span class="tag-tech">Python Flask API</span>
+        <span class="tag-tech">3FN Normalizada</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    let activeTableName = 'productos';
+
+    async function loadTablesSummary() {
+      try {
+        const res = await fetch('/api/bd/tablas');
+        const data = await res.json();
+        if (res.status === 403) throw new Error('Acceso restringido: esta sección es solo para administradores. Inicia sesión en /cuenta.html con un usuario admin.');
+        if (!data.ok) throw new Error(data.error);
+
+        const grid = document.getElementById('tablesCardsGrid');
+        grid.innerHTML = data.tablas.map(t => `
+          <div class="table-card ${t.tabla === activeTableName ? 'active-table' : ''}" onclick="selectActiveTable('${t.tabla}')" id="card_${t.tabla}">
+            <div class="table-card-header">
+              <span class="table-name">📁 ${t.tabla}</span>
+              <span class="table-rows-count">${t.total_filas} filas</span>
+            </div>
+            <div class="table-card-body">
+              <strong>${t.columnas.length} columnas</strong> (${t.columnas.slice(0, 4).map(c => c.name).join(', ')}${t.columnas.length > 4 ? '...' : ''})
+            </div>
+            <div class="table-card-footer">
+              <span>${t.llaves_foraneas.length > 0 ? `🔗 ${t.llaves_foraneas.length} Llave(s) Foránea(s)` : 'Llaves Primarias'}</span>
+              <span style="color:var(--accent-cyan); font-weight:700;">Ver registros →</span>
+            </div>
+          </div>
+        `).join('');
+
+        selectActiveTable('productos');
+      } catch (err) {
+        const msg = err.message || 'Error desconocido';
+        const hint = msg.includes('Acceso restringido') ? '' : ' Asegúrate de ejecutar <code>python server.py</code>.';
+        document.getElementById('tablesCardsGrid').innerHTML = `
+          <div style="grid-column:1/-1; padding:2rem; text-align:center; color:var(--color-danger);">
+            ⚠️ ${msg}.${hint}
+          </div>
+        `;
+      }
+    }
+
+    async function selectActiveTable(tableName) {
+      activeTableName = tableName;
+      document.querySelectorAll('.table-card').forEach(c => c.classList.remove('active-table'));
+      const card = document.getElementById(`card_${tableName}`);
+      if (card) card.classList.add('active-table');
+
+      const viewer = document.getElementById('tableDataViewerSection');
+      viewer.style.display = 'block';
+      document.getElementById('activeTableTitle').textContent = `Tabla: ${tableName}`;
+
+      try {
+        const res = await fetch(`/api/bd/tabla/${tableName}`);
+        const data = await res.json();
+        if (!data.ok) throw new Error(data.error);
+
+        document.getElementById('activeTableSubtitle').textContent = `${data.total} registros almacenados en SQLite`;
+
+        const thead = document.getElementById('activeDataTableHead');
+        const tbody = document.getElementById('activeDataTableBody');
+
+        if (data.filas.length === 0) {
+          thead.innerHTML = '';
+          tbody.innerHTML = `<tr><td style="text-align:center; padding:2rem; color:var(--text-muted);">Esta tabla no contiene registros actualmente.</td></tr>`;
+          return;
+        }
+
+        const cols = Object.keys(data.filas[0]);
+        thead.innerHTML = `<tr>${cols.map(c => `<th>${c}</th>`).join('')}</tr>`;
+
+        tbody.innerHTML = data.filas.map(row => `
+          <tr>
+            ${cols.map(c => {
+              const val = row[c];
+              if (val === null || val === undefined) return '<td style="color:var(--text-muted); font-style:italic;">NULL</td>';
+              if (typeof val === 'string' && val.length > 60) return `<td title="${val}">${val.substring(0, 57)}...</td>`;
+              return `<td>${val}</td>`;
+            }).join('')}
+          </tr>
+        `).join('');
+
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    function refreshActiveTableData() {
+      selectActiveTable(activeTableName);
+    }
+
+    function setQuery(sql) {
+      document.getElementById('sqlConsoleInput').value = sql;
+      runCustomSql();
+    }
+
+    async function runCustomSql() {
+      const sql = document.getElementById('sqlConsoleInput').value.trim();
+      const container = document.getElementById('sqlResultContainer');
+      container.innerHTML = `<div style="color:var(--text-muted); font-size:0.875rem;">Ejecutando consulta en SQLite...</div>`;
+
+      try {
+        const res = await fetch('/api/bd/sql', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ sql })
+        });
+        const data = await res.json();
+        if (!data.ok) {
+          container.innerHTML = `<div style="color:var(--color-danger); padding:0.75rem; background:rgba(239, 68, 68, 0.1); border-radius:var(--radius-sm); border:1px solid var(--color-danger);">⚠️ Error SQL: ${data.error}</div>`;
+          return;
+        }
+
+        if (data.filas.length === 0) {
+          container.innerHTML = `<div style="color:var(--text-secondary); font-size:0.875rem;">Consulta ejecutada con éxito. 0 resultados.</div>`;
+          return;
+        }
+
+        const cols = Object.keys(data.filas[0]);
+        container.innerHTML = `
+          <div style="font-size:0.8125rem; color:var(--color-success); margin-bottom:0.5rem;">
+            ✓ ${data.total} resultado(s) devuelto(s) por SQLite:
+          </div>
+          <div class="data-table-container" style="max-height:350px;">
+            <table class="data-table">
+              <thead><tr>${cols.map(c => `<th>${c}</th>`).join('')}</tr></thead>
+              <tbody>
+                ${data.filas.map(r => `
+                  <tr>${cols.map(c => `<td>${r[c] !== null ? r[c] : '<span style="color:var(--text-muted); font-style:italic;">NULL</span>'}</td>`).join('')}</tr>
+                `).join('')}
+              </tbody>
+            </table>
+          </div>
+        `;
+
+      } catch (err) {
+        container.innerHTML = `<div style="color:var(--color-danger);">Error de red: ${err.message}</div>`;
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', loadTablesSummary);
+  </script>
+</body>
+</html>
