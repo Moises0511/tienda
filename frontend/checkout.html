@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="NEXUS GEAR MX - Proceso de pago seguro, compra como invitado, pagos en OXXO, tarjetas a MSI y entrega en Villahermosa.">
+  <title>Finalizar Compra Segura | NEXUS GEAR MX</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+
+  <!-- Header Simplificado de Checkout Seguro -->
+  <header class="main-header" style="position:static; border-bottom:1px solid var(--border-subtle);">
+    <div class="container" style="display:flex; justify-content:space-between; align-items:center; min-height:70px;">
+      <a href="index.html" class="brand-logo">
+        <div class="logo-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="12 2 2 7 12 12 22 7 12 2" stroke="url(#cyanGrad)"></polygon>
+            <polyline points="2 17 12 22 22 17" stroke="url(#cyanGrad)"></polyline>
+            <polyline points="2 12 12 17 22 12" stroke="url(#cyanGrad)"></polyline>
+            <defs>
+              <linearGradient id="cyanGrad" x1="2" y1="2" x2="22" y2="22" gradientUnits="userSpaceOnUse"><stop stop-color="#00f2fe"/><stop offset="1" stop-color="#4facfe"/></linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <span class="brand-name">NEXUS<span class="highlight">GEAR</span> <span style="font-size:0.75rem; color:var(--text-muted); font-weight:400;">CHECKOUT SEGURO</span></span>
+      </a>
+
+      <div style="display:flex; align-items:center; gap:0.5rem; font-size:0.8125rem; color:var(--color-success); font-weight:700;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+        <span>Cifrado SSL 256 bits</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="container" id="checkoutPageMain">
+    
+    <div class="checkout-layout">
+      
+      <!-- Columna Principal: Pasos de Checkout -->
+      <div class="checkout-steps-col">
+        
+        <!-- Paso 1: Información de Contacto & Modo Invitado -->
+        <div class="checkout-step-card">
+          <div class="step-card-header">
+            <span class="step-badge">1</span>
+            <div>
+              <h2 style="font-size:1.15rem; font-weight:800; color:var(--text-primary);">Datos del Comprador</h2>
+              <p style="font-size:0.7813rem; color:var(--text-secondary);">Puedes comprar como invitado o vincular tu cuenta estudiantil.</p>
+            </div>
+          </div>
+
+          <div style="display:flex; gap:1rem; margin-bottom:1.25rem;">
+            <label class="custom-checkbox">
+              <input type="radio" name="checkoutUserType" value="guest" checked>
+              <span class="checkmark"></span>
+              <span class="label-text"><strong>Comprar como Invitado</strong> (Rápido sin registro)</span>
+            </label>
+            <label class="custom-checkbox">
+              <input type="radio" name="checkoutUserType" value="student">
+              <span class="checkmark"></span>
+              <span class="label-text">Tengo cuenta estudiantil</span>
+            </label>
+          </div>
+
+          <div class="checkout-form-grid two-cols">
+            <div>
+              <label class="form-label" for="checkoutName">Nombre completo *</label>
+              <input type="text" id="checkoutName" class="form-input" placeholder="Ej: Juan Pérez Morales" required>
+            </div>
+            <div>
+              <label class="form-label" for="checkoutEmail">Correo electrónico *</label>
+              <input type="email" id="checkoutEmail" class="form-input" placeholder="juan@correo.com" required>
+            </div>
+            <div>
+              <label class="form-label" for="checkoutPhone">Teléfono / WhatsApp *</label>
+              <input type="tel" id="checkoutPhone" class="form-input" placeholder="10 dígitos (para avisos de entrega)" required>
+            </div>
+            <div>
+              <label class="form-label" for="checkoutRfc">RFC (Opcional si requieres factura CFDI)</label>
+              <input type="text" id="checkoutRfc" class="form-input" placeholder="XAXX010101000">
+            </div>
+          </div>
+        </div>
+
+        <!-- Paso 2: Método de Entrega y Dirección -->
+        <div class="checkout-step-card">
+          <div class="step-card-header">
+            <span class="step-badge">2</span>
+            <div>
+              <h2 style="font-size:1.15rem; font-weight:800; color:var(--text-primary);">Método de Entrega</h2>
+              <p style="font-size:0.7813rem; color:var(--text-secondary);">Selecciona envío nacional a domicilio o retiro gratis en Villahermosa.</p>
+            </div>
+          </div>
+
+          <div class="shipping-options-grid" style="margin-bottom:1.5rem;">
+            <div class="shipping-radio-box selected" id="optShipHome">
+              <div style="display:flex; justify-content:space-between; margin-bottom:0.35rem;">
+                <strong>🚚 Envío a Domicilio (Todo México)</strong>
+                <span style="color:var(--color-success); font-weight:700;" id="checkoutShipCostLabel">FedEx / DHL</span>
+              </div>
+              <p style="font-size:0.8125rem; color:var(--text-secondary);">
+                Entrega estimada de 2 a 4 días hábiles con guía rastreable en tiempo real.
+              </p>
+            </div>
+
+            <div class="shipping-radio-box" id="optShipTabasco">
+              <div style="display:flex; justify-content:space-between; margin-bottom:0.35rem;">
+                <strong>📍 Recoger en Villahermosa (Tabasco)</strong>
+                <span style="color:var(--accent-cyan); font-weight:700;">¡100% GRATIS!</span>
+              </div>
+              <p style="font-size:0.8125rem; color:var(--text-secondary);">
+                Punto aliado en Plaza Atenas, Tabasco 2000. Listo en 2 horas (Lun-Sáb 11:00 a 19:00 hrs).
+              </p>
+            </div>
+          </div>
+
+          <!-- Campos de Dirección de Envío a Domicilio -->
+          <div id="homeAddressFormFields">
+            <div class="checkout-form-grid two-cols" style="margin-bottom:1rem;">
+              <div>
+                <label class="form-label" for="checkoutStreet">Calle y Número Exterior / Interior *</label>
+                <input type="text" id="checkoutStreet" class="form-input" placeholder="Av. Paseo Tabasco #1402 Int 4B">
+              </div>
+              <div>
+                <label class="form-label" for="checkoutColonia">Colonia / Fraccionamiento *</label>
+                <input type="text" id="checkoutColonia" class="form-input" placeholder="Col. Tabasco 2000">
+              </div>
+            </div>
+
+            <div class="checkout-form-grid three-cols" style="margin-bottom:1rem;">
+              <div>
+                <label class="form-label" for="checkoutCp">Código Postal (C.P.) *</label>
+                <input type="text" id="checkoutCp" class="form-input" placeholder="86035" maxlength="5">
+              </div>
+              <div>
+                <label class="form-label" for="checkoutCity">Ciudad / Municipio *</label>
+                <input type="text" id="checkoutCity" class="form-input" placeholder="Villahermosa">
+              </div>
+              <div>
+                <label class="form-label" for="checkoutState">Estado *</label>
+                <select id="checkoutState" class="form-select">
+                  <option value="Tabasco">Tabasco</option>
+                  <option value="CDMX">Ciudad de México</option>
+                  <option value="Jalisco">Jalisco</option>
+                  <option value="Nuevo León">Nuevo León</option>
+                  <option value="Puebla">Puebla</option>
+                  <option value="Veracruz">Veracruz</option>
+                  <option value="Yucatán">Yucatán</option>
+                  <option value="Chiapas">Chiapas</option>
+                  <option value="Otro">Otro Estado de la República</option>
+                </select>
+              </div>
+            </div>
+
+            <div>
+              <label class="form-label" for="checkoutRefs">Referencias de Entrega (Entre qué calles, color de fachada)</label>
+              <input type="text" id="checkoutRefs" class="form-input" placeholder="Frente a la tienda de conveniencia, portón negro.">
+            </div>
+          </div>
+
+          <!-- Información del Punto Aliado en Villahermosa (Oculto si elige domicilio) -->
+          <div id="villahermosaPickupInfo" hidden style="background:rgba(56,189,248,0.08); border:1px solid rgba(56,189,248,0.3); border-radius:var(--radius-md); padding:1rem;">
+            <strong style="color:var(--color-info);">📍 Punto de Retiro Oficial en Villahermosa:</strong>
+            <p style="font-size:0.8438rem; color:var(--text-secondary); margin-top:0.35rem;">
+              Plaza Atenas Local 12, Prolongación Paseo Tabasco #1405, Tabasco 2000, C.P. 86035.<br>
+              <strong>Horario:</strong> Lunes a Sábado de 11:00 a 19:00 hrs. Presenta tu INE o número de pedido al recoger.
+            </p>
+          </div>
+
+        </div>
+
+        <!-- Paso 3: Métodos de Pago Flexibles -->
+        <div class="checkout-step-card">
+          <div class="step-card-header">
+            <span class="step-badge">3</span>
+            <div>
+              <h2 style="font-size:1.15rem; font-weight:800; color:var(--text-primary);">Método de Pago</h2>
+              <p style="font-size:0.7813rem; color:var(--text-secondary);">Selecciona la opción de pago más conveniente para ti en México.</p>
+            </div>
+          </div>
+
+          <div class="payment-methods-grid">
+            
+            <!-- Opción 1: Tarjeta de Crédito/Débito -->
+            <div class="payment-tab-btn active-payment" data-method="card">
+              <div style="display:flex; align-items:center; gap:0.65rem;">
+                <input type="radio" name="paymentOption" value="card" checked>
+                <strong>Tarjeta de Débito / Crédito (Hasta 6 MSI)</strong>
+              </div>
+              <div class="payment-methods-icons">
+                <span class="pay-badge">VISA</span>
+                <span class="pay-badge">Mastercard</span>
+                <span class="pay-badge">AMEX</span>
+              </div>
+            </div>
+
+            <!-- Panel Tarjeta con Previsualización Interactiva -->
+            <div class="payment-details-panel active-panel" id="panelPaymentCard">
+              
+              <!-- Tarjeta Virtual Dinámica -->
+              <div class="card-preview-container">
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                  <div class="card-preview-chip"></div>
+                  <span style="font-weight:800; font-family:var(--font-mono); color:var(--accent-cyan);" id="cardTypeBrand">VISA</span>
+                </div>
+                <div class="card-preview-num" id="cardPreviewDisplay">•••• •••• •••• ••••</div>
+                <div class="card-preview-bottom">
+                  <div>
+                    <div style="font-size:0.625rem;">TITULAR</div>
+                    <div class="card-preview-holder" id="cardHolderDisplay">TU NOMBRE</div>
+                  </div>
+                  <div>
+                    <div style="font-size:0.625rem;">EXPIRA</div>
+                    <div id="cardExpDisplay">MM/AA</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="checkout-form-grid two-cols">
+                <div>
+                  <label class="form-label" for="cardInputNumber">Número de Tarjeta</label>
+                  <input type="text" id="cardInputNumber" class="form-input" placeholder="1234 5678 9012 3456" maxlength="19">
+                </div>
+                <div>
+                  <label class="form-label" for="cardInputHolder">Nombre en la Tarjeta</label>
+                  <input type="text" id="cardInputHolder" class="form-input" placeholder="Como aparece en el plástico" style="text-transform:uppercase;">
+                </div>
+                <div>
+                  <label class="form-label" for="cardInputExp">Fecha de Expiración (MM/AA)</label>
+                  <input type="text" id="cardInputExp" class="form-input" placeholder="12/28" maxlength="5">
+                </div>
+                <div>
+                  <label class="form-label" for="cardInputCvv">Código de Seguridad (CVV)</label>
+                  <input type="password" id="cardInputCvv" class="form-input" placeholder="123" maxlength="4">
+                </div>
+              </div>
+
+              <div style="margin-top:1rem;">
+                <label class="form-label" for="cardInstallments">Meses Sin Intereses (MSI)</label>
+                <select id="cardInstallments" class="form-select">
+                  <option value="1">1 pago de contado (Sin intereses)</option>
+                  <option value="3">3 Meses Sin Intereses</option>
+                  <option value="6">6 Meses Sin Intereses (Tarjetas participantes)</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Opción 2: Efectivo en OXXO Pay -->
+            <div class="payment-tab-btn" data-method="oxxo">
+              <div style="display:flex; align-items:center; gap:0.65rem;">
+                <input type="radio" name="paymentOption" value="oxxo">
+                <strong>Pago en Efectivo con OXXO Pay</strong>
+              </div>
+              <span class="pay-badge" style="background:#dc2626; color:#fff; font-weight:800;">OXXO</span>
+            </div>
+
+            <div class="payment-details-panel" id="panelPaymentOxxo">
+              <div class="oxxo-voucher-preview">
+                <div style="font-weight:800; font-size:1.1rem; color:#dc2626;">OXXO PAY</div>
+                <div style="font-size:0.75rem; color:#666;">Paga en cualquier caja OXXO de la República Mexicana</div>
+                <div class="oxxo-barcode-mock"></div>
+                <div style="font-family:var(--font-mono); font-weight:800; font-size:0.95rem; letter-spacing:1.5px;">
+                  9324 - 4829 - 1048 - 72
+                </div>
+                <div style="font-size:0.7188rem; color:#888; margin-top:0.4rem;">
+                  Comisión de $15 MXN cobrada en caja. Tu pago se acredita automáticamente en menos de 2 horas.
+                </div>
+              </div>
+            </div>
+
+            <!-- Opción 3: Transferencia SPEI -->
+            <div class="payment-tab-btn" data-method="spei">
+              <div style="display:flex; align-items:center; gap:0.65rem;">
+                <input type="radio" name="paymentOption" value="spei">
+                <strong>Transferencia SPEI (Banco)</strong>
+              </div>
+              <span class="pay-badge" style="background:var(--color-success); color:#000; font-weight:800;">SPEI</span>
+            </div>
+
+            <div class="payment-details-panel" id="panelPaymentSpei">
+              <div class="oxxo-voucher-preview">
+                <div style="font-weight:800; font-size:1.1rem; color:var(--color-success);">TRANSFERENCIA SPEI</div>
+                <div style="font-size:0.75rem; color:#666;">Realiza tu pago desde la app de tu banco a la siguiente cuenta CLABE:</div>
+                <div style="font-family:var(--font-mono); font-weight:800; font-size:0.95rem; letter-spacing:1.5px; margin-top:0.6rem;">
+                  012 180 012345678901 23
+                </div>
+                <div style="font-size:0.75rem; color:var(--text-secondary); margin-top:0.5rem; line-height:1.6;">
+                  <strong>Banco:</strong> BBVA México &nbsp;•&nbsp; <strong>Beneficiario:</strong> NEXUS GEAR MX S.A. de C.V.<br>
+                  <strong>Concepto:</strong> tu número de pedido (se genera al confirmar). El pago se acredita en menos de 30 minutos.
+                </div>
+              </div>
+            </div>
+
+            <!-- Opción 4: Pago Contra Entrega en Villahermosa -->
+            <div class="payment-tab-btn" data-method="cod">
+              <div style="display:flex; align-items:center; gap:0.65rem;">
+                <input type="radio" name="paymentOption" value="cod">
+                <strong>Pago Contra Entrega (Punto Aliado Villahermosa)</strong>
+              </div>
+              <span class="pay-badge" style="background:var(--color-info); color:#000;">EFECTIVO / TERMINAL</span>
+            </div>
+
+            <div class="payment-details-panel" id="panelPaymentCod">
+              <p style="font-size:0.8438rem; color:var(--text-secondary); line-height:1.5;">
+                Paga en efectivo exacto o con tarjeta en la terminal punto de venta al recoger tus periféricos en Plaza Atenas, Tabasco 2000. Cero riesgo y garantía de revisión antes de pagar.
+              </p>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Columna Lateral: Resumen de Pedido y Confirmación -->
+      <aside class="checkout-summary-col">
+        <div class="cart-summary-card">
+          <h2 class="summary-heading">Resumen del Pedido</h2>
+          
+          <div class="cart-items-container" id="checkoutItemsList" style="max-height:240px; overflow-y:auto; margin-bottom:1rem;">
+            <!-- Rellenado por app.js -->
+          </div>
+
+          <div class="summary-line">
+            <span>Subtotal</span>
+            <span id="checkoutSubtotal">$0.00 MXN</span>
+          </div>
+
+          <div class="summary-line discount" id="checkoutDiscountRow" hidden>
+            <span>Descuento aplicado</span>
+            <span id="checkoutDiscount">-$0.00 MXN</span>
+          </div>
+
+          <div class="summary-line">
+            <span>Envío estimado</span>
+            <span id="checkoutShipping">$0.00 MXN</span>
+          </div>
+
+          <div class="summary-line total">
+            <span>Total a Pagar</span>
+            <span id="checkoutTotal" style="color:var(--accent-cyan);">$0.00 MXN</span>
+          </div>
+
+          <div style="margin:1.25rem 0 0.85rem;">
+            <label class="custom-checkbox" style="font-size:0.7813rem; align-items:flex-start;">
+              <input type="checkbox" id="termsCheckbox" checked required>
+              <span class="checkmark" style="margin-top:2px;"></span>
+              <span class="label-text">
+                Acepto las <a href="ayuda.html#terminos" target="_blank" style="color:var(--accent-cyan); text-decoration:underline;">Políticas de Devolución (30 días)</a> y Términos de Servicio.
+              </span>
+            </label>
+          </div>
+
+          <button class="btn btn-primary btn-block checkout-btn" id="confirmOrderBtn" style="padding:0.95rem; font-size:1.05rem;">
+            <span>Confirmar Pedido y Pagar</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          </button>
+
+          <div style="margin-top:1rem; text-align:center; font-size:0.75rem; color:var(--text-muted);">
+            Garantía oficial de 12 meses en todos los periféricos.
+          </div>
+        </div>
+      </aside>
+
+    </div>
+
+  </main>
+
+  <!-- Modal de Pedido Confirmado / Ticket de Compra -->
+  <div class="modal-overlay" id="orderSuccessModal" hidden role="dialog" aria-modal="true">
+    <div class="modal-container" style="max-width:560px; padding:2rem; text-align:center;">
+      <div style="width:64px; height:64px; border-radius:50%; background:var(--color-success); color:#fff; display:flex; align-items:center; justify-content:center; margin:0 auto 1.25rem; font-size:2rem;">
+        ✓
+      </div>
+      <h2 style="font-size:1.6rem; font-weight:800; color:var(--text-primary); margin-bottom:0.35rem;">
+        ¡Gracias por tu compra!
+      </h2>
+      <p style="color:var(--text-secondary); font-size:0.875rem; margin-bottom:1.5rem;">
+        Hemos recibido tu pedido y enviado tu comprobante y guía de seguimiento a tu correo electrónico.
+      </p>
+
+      <div style="background:var(--bg-surface-elevated); border:1px dashed var(--border-medium); border-radius:var(--radius-lg); padding:1.25rem; text-align:left; margin-bottom:1.5rem; font-size:0.8438rem;">
+        <div style="display:flex; justify-content:space-between; margin-bottom:0.5rem;">
+          <span style="color:var(--text-muted);">Número de Pedido:</span>
+          <strong style="color:var(--accent-cyan); font-family:var(--font-mono);" id="successOrderNum">#NX-84291</strong>
+        </div>
+        <div style="display:flex; justify-content:space-between; margin-bottom:0.5rem;">
+          <span style="color:var(--text-muted);">Método de Pago:</span>
+          <strong id="successPaymentMethod">Tarjeta de Crédito (MSI)</strong>
+        </div>
+        <div style="display:flex; justify-content:space-between; margin-bottom:0.5rem;">
+          <span style="color:var(--text-muted);">Total Pagado:</span>
+          <strong style="color:var(--text-primary);" id="successTotalAmount">$0.00 MXN</strong>
+        </div>
+        <div style="display:flex; justify-content:space-between;">
+          <span style="color:var(--text-muted);">Entrega / Seguimiento:</span>
+          <strong style="color:var(--color-info);" id="successShippingType">Llega en 2-4 días hábiles vía FedEx</strong>
+        </div>
+      </div>
+
+      <div style="display:flex; gap:0.75rem;">
+        <a href="cuenta.html" class="btn btn-primary btn-block">Rastrear en Mi Cuenta</a>
+        <a href="index.html" class="btn btn-outline btn-block">Volver a la Tienda</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-container" id="toastContainer" aria-live="polite"></div>
+
+  <footer class="main-footer">
+    <div class="container footer-bottom-flex" style="padding:2rem 0; border-top:1px solid var(--border-subtle);">
+      <p class="copyright">© 2026 NEXUS GEAR MX. Módulo 5: Checkout y Pasarela Segura.</p>
+    </div>
+  </footer>
+
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

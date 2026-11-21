@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="NEXUS GEAR MX - Carrito de compras, cálculo de envío nacional y retiro gratuito en Villahermosa, cupones de descuento para estudiantes.">
+  <title>Tu Carrito de Compras | NEXUS GEAR MX</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+
+  <!-- Top Announcement -->
+  <div class="top-announcement" role="region" aria-label="Anuncios y promociones">
+    <div class="container announcement-content">
+      <div class="announcement-item">
+        <span class="badge-pill">ENVÍO GRATIS</span>
+        <span>A todo México en compras mayores a <strong>$999 MXN</strong></span>
+      </div>
+      <div class="announcement-item hide-mobile">
+        <span class="icon">📍</span>
+        <span>Punto de entrega en <strong>Villahermosa, Tabasco</strong> (¡Sin costo de envío!)</span>
+      </div>
+      <div class="announcement-item hide-mobile">
+        <span class="icon">💳</span>
+        <span>Hasta 6 MSI con tarjetas participantes | <strong>OXXO Pay</strong></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="main-header" id="mainHeader">
+    <div class="container header-grid">
+      <button class="icon-btn mobile-menu-toggle" id="mobileMenuBtn" aria-label="Abrir menú">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+      </button>
+
+      <a href="index.html" class="brand-logo" aria-label="NEXUS GEAR México - Inicio">
+        <div class="logo-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="12 2 2 7 12 12 22 7 12 2" stroke="url(#cyanGrad)"></polygon>
+            <polyline points="2 17 12 22 22 17" stroke="url(#cyanGrad)"></polyline>
+            <polyline points="2 12 12 17 22 12" stroke="url(#cyanGrad)"></polyline>
+            <defs>
+              <linearGradient id="cyanGrad" x1="2" y1="2" x2="22" y2="22" gradientUnits="userSpaceOnUse"><stop stop-color="#00f2fe"/><stop offset="1" stop-color="#4facfe"/></linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <div class="logo-text">
+          <span class="brand-name">NEXUS<span class="highlight">GEAR</span></span>
+          <span class="brand-tag">MX • GAMING & STUDY</span>
+        </div>
+      </a>
+
+      <nav class="nav-links-desktop hide-mobile hide-tablet" aria-label="Navegación principal">
+        <a href="index.html" class="nav-link">Inicio</a>
+        <a href="catalogo.html" class="nav-link">Catálogo</a>
+        <a href="cuenta.html" class="nav-link">Mi Cuenta</a>
+        <a href="ayuda.html" class="nav-link">Ayuda</a>
+      </nav>
+
+      <div class="header-actions">
+        <a href="cuenta.html" class="icon-btn" title="Mi Cuenta / Pedidos">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+        </a>
+
+        <a href="cuenta.html#deseos" class="icon-btn" title="Lista de Deseos">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+          </svg>
+          <span class="action-counter" id="wishlistCount">0</span>
+        </a>
+
+        <a href="carrito.html" class="cart-btn active" style="border-color:var(--accent-cyan);" aria-label="Carrito">
+          <div class="cart-icon-wrapper">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="9" cy="21" r="1"></circle>
+              <circle cx="20" cy="21" r="1"></circle>
+              <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+            </svg>
+            <span class="cart-counter" id="cartCount">0</span>
+          </div>
+          <div class="cart-total-preview hide-mobile">
+            <span class="cart-label">Carrito</span>
+            <span class="cart-amount" id="cartTotalHeader">$0.00 MXN</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container" id="cartPageMain">
+    
+    <!-- Migas de Pan -->
+    <nav class="breadcrumbs" aria-label="Ruta de navegación" style="margin-top:1.5rem;">
+      <ol>
+        <li><a href="index.html">Inicio</a></li>
+        <li aria-hidden="true">/</li>
+        <li><a href="catalogo.html">Catálogo</a></li>
+        <li aria-hidden="true">/</li>
+        <li aria-current="page">Carrito de Compras</li>
+      </ol>
+    </nav>
+
+    <div class="cart-page-layout">
+      
+      <!-- Columna Izquierda: Lista de Productos y Herramientas -->
+      <div class="cart-main-content">
+        
+        <div style="margin-bottom:1.5rem;">
+          <h1 style="font-size:2rem; font-weight:800; color:var(--text-primary); margin-bottom:0.35rem;">
+            Tu Carrito de Compras
+          </h1>
+          <p style="color:var(--text-secondary); font-size:0.9375rem;">
+            Revisa tus artículos, aplica cupones de estudiante o calcula el costo de entrega a tu código postal.
+          </p>
+        </div>
+
+        <!-- Barra de Progreso de Envío Gratis -->
+        <div class="free-shipping-meter" style="border-radius:var(--radius-lg); margin-bottom:1.5rem; background:var(--bg-surface);">
+          <div class="meter-text" id="freeShippingMeterText">
+            Agrega <strong>$999 MXN</strong> para obtener <strong>Envío Gratis</strong>
+          </div>
+          <div class="meter-bar-track">
+            <div class="meter-bar-fill" id="freeShippingBarFill" style="width: 0%;"></div>
+          </div>
+        </div>
+
+        <!-- Tabla / Tarjeta de Productos -->
+        <div class="cart-table-card">
+          <div class="cart-table-header">
+            <span style="font-weight:700; font-size:0.9375rem;">Artículos en tu carrito (<span id="cartTableCount">0</span>)</span>
+            <button class="reset-filters-btn" id="emptyCartBtn" style="color:var(--color-danger);">Vaciar Carrito</button>
+          </div>
+
+          <div class="cart-items-container" id="cartPageItemsList">
+            <!-- Rellenado dinámicamente con JS -->
+          </div>
+        </div>
+
+        <!-- Herramientas: Calculador de Envío y Código de Descuento -->
+        <div class="cart-extra-tools-grid">
+          
+          <!-- Calculador de Envío en Tiempo Real -->
+          <div class="tool-card">
+            <div class="tool-card-title">
+              <span>📍</span>
+              <span>Calcular Envío o Retiro en Villahermosa</span>
+            </div>
+            <div style="font-size:0.8125rem; color:var(--text-secondary); margin-bottom:0.75rem;">
+              Ingresa tu código postal o selecciona retiro local:
+            </div>
+            <div style="display:flex; gap:0.5rem; margin-bottom:0.75rem;">
+              <input type="text" id="cartShippingCp" class="form-input" placeholder="C.P. (ej: 86035 o 06700)" maxlength="5">
+              <button class="btn btn-outline" id="cartCalcShippingBtn" style="white-space:nowrap;">Calcular</button>
+            </div>
+            <div class="shipping-calc-result" id="cartShippingResult">
+              Introduce tu código postal para cotizar envío express nacional o retiro gratuito en Villahermosa.
+            </div>
+          </div>
+
+          <!-- Cupones de Descuento -->
+          <div class="tool-card">
+            <div class="tool-card-title">
+              <span>🎟️</span>
+              <span>Cupón de Descuento o Estudiante</span>
+            </div>
+            <div style="font-size:0.8125rem; color:var(--text-secondary); margin-bottom:0.75rem;">
+              Usa <strong>ESTUDIANTE10</strong> (10% OFF) o <strong>NEXUS100</strong> ($100 MXN OFF):
+            </div>
+            <div style="display:flex; gap:0.5rem; margin-bottom:0.75rem;">
+              <input type="text" id="cartCouponInput" class="form-input" placeholder="Ingresa tu cupón" style="text-transform:uppercase;">
+              <button class="btn btn-primary" id="applyCouponBtn" style="white-space:nowrap;">Aplicar</button>
+            </div>
+            <div id="couponStatusMessage" style="font-size:0.8125rem; color:var(--text-muted);">
+              Solo se puede aplicar un cupón por orden.
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Sección de Guardados para Después -->
+        <div class="cart-table-card" id="savedForLaterSection" style="margin-top:2rem;">
+          <div class="cart-table-header">
+            <span style="font-weight:700; font-size:0.9375rem;">Guardados para comprar después (<span id="savedForLaterCount">0</span>)</span>
+          </div>
+          <div class="cart-items-container" id="savedForLaterList">
+            <div style="padding:1.5rem; text-align:center; color:var(--text-muted); font-size:0.875rem;">
+              No tienes artículos guardados para después.
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Columna Derecha: Resumen de Orden y Checkout -->
+      <aside class="cart-summary-col">
+        <div class="cart-summary-card">
+          <h2 class="summary-heading">Resumen de tu Pedido</h2>
+          
+          <div class="summary-line">
+            <span>Subtotal de productos</span>
+            <span id="summarySubtotal">$0.00 MXN</span>
+          </div>
+
+          <div class="summary-line discount" id="summaryDiscountRow" hidden>
+            <span>Descuento aplicado (<span id="appliedCouponCode"></span>)</span>
+            <span id="summaryDiscount">-$0.00 MXN</span>
+          </div>
+
+          <div class="summary-line">
+            <span>Costo de envío estimado</span>
+            <span id="summaryShipping">Calculado con C.P.</span>
+          </div>
+
+          <div class="summary-line total">
+            <span>Total a Pagar</span>
+            <span id="summaryTotal" style="color:var(--accent-cyan);">$0.00 MXN</span>
+          </div>
+
+          <div style="margin:1.5rem 0 1rem;">
+            <a href="checkout.html" class="btn btn-primary btn-block" style="padding:0.85rem; font-size:1.05rem;">
+              <span>Continuar al Checkout</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </a>
+            <a href="catalogo.html" class="btn btn-outline btn-block" style="margin-top:0.75rem;">
+              Seguir Comprando
+            </a>
+          </div>
+
+          <div style="padding-top:1rem; border-top:1px solid var(--border-subtle); font-size:0.75rem; color:var(--text-muted); line-height:1.5; text-align:center;">
+            🔒 Pagos cifrados SSL de 256 bits.<br>
+            Aceptamos tarjetas de débito/crédito, <strong>OXXO Pay</strong> y retiro en Villahermosa.
+          </div>
+        </div>
+      </aside>
+
+    </div>
+
+  </main>
+
+  <div class="toast-container" id="toastContainer" aria-live="polite"></div>
+
+  <!-- Footer -->
+  <footer class="main-footer">
+    <div class="container footer-bottom-flex" style="padding:2rem 0; border-top:1px solid var(--border-subtle);">
+      <p class="copyright">© 2026 NEXUS GEAR MX. Módulo 4: Carrito de Compras.</p>
+      <div class="footer-badges">
+        <span class="tag-tech">Envío Real-Time</span>
+        <span class="tag-tech">Cupones Dinámicos</span>
+        <span class="tag-tech">Save for Later</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

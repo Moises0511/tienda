@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="NEXUS GEAR MX - Detalle de producto individual, especificaciones técnicas, galería con zoom y opiniones de clientes en México.">
+  <title>Detalle del Producto | NEXUS GEAR MX</title>
+  
+  <!-- Tipografía Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Estilos del Sistema de Diseño -->
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+
+  <!-- ========================================================== -->
+  <!-- 1. BARRA SUPERIOR DE ANUNCIOS                              -->
+  <!-- ========================================================== -->
+  <div class="top-announcement" role="region" aria-label="Anuncios y promociones">
+    <div class="container announcement-content">
+      <div class="announcement-item">
+        <span class="badge-pill">ENVÍO GRATIS</span>
+        <span>A todo México en compras mayores a <strong>$999 MXN</strong></span>
+      </div>
+      <div class="announcement-item hide-mobile">
+        <span class="icon">📍</span>
+        <span>Punto de entrega en <strong>Villahermosa, Tabasco</strong> (¡Sin costo de envío!)</span>
+      </div>
+      <div class="announcement-item hide-mobile">
+        <span class="icon">💳</span>
+        <span>Hasta 6 MSI con tarjetas participantes | <strong>OXXO Pay</strong></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================== -->
+  <!-- 2. ENCABEZADO PRINCIPAL (NAVBAR)                           -->
+  <!-- ========================================================== -->
+  <header class="main-header" id="mainHeader">
+    <div class="container header-grid">
+      
+      <!-- Botón Menú Móvil -->
+      <button class="icon-btn mobile-menu-toggle" id="mobileMenuBtn" aria-label="Abrir menú de navegación" aria-expanded="false">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+
+      <!-- Logotipo de la Tienda -->
+      <a href="index.html" class="brand-logo" aria-label="NEXUS GEAR México - Inicio">
+        <div class="logo-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="12 2 2 7 12 12 22 7 12 2" stroke="url(#cyanGrad)"></polygon>
+            <polyline points="2 17 12 22 22 17" stroke="url(#cyanGrad)"></polyline>
+            <polyline points="2 12 12 17 22 12" stroke="url(#cyanGrad)"></polyline>
+            <defs>
+              <linearGradient id="cyanGrad" x1="2" y1="2" x2="22" y2="22" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#00f2fe"/>
+                <stop offset="1" stop-color="#4facfe"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <div class="logo-text">
+          <span class="brand-name">NEXUS<span class="highlight">GEAR</span></span>
+          <span class="brand-tag">MX • GAMING & STUDY</span>
+        </div>
+      </a>
+
+      <!-- Navegación Primaria Escritorio -->
+      <nav class="nav-links-desktop hide-mobile hide-tablet" aria-label="Navegación principal">
+        <a href="index.html" class="nav-link">Inicio</a>
+        <a href="catalogo.html" class="nav-link">Catálogo</a>
+        <a href="cuenta.html" class="nav-link">Mi Cuenta</a>
+        <a href="ayuda.html" class="nav-link">Ayuda</a>
+      </nav>
+
+      <!-- Buscador Inteligente -->
+      <div class="search-container" role="search">
+        <div class="search-input-wrapper">
+          <span class="search-icon" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+          </span>
+          <input 
+            type="search" 
+            id="searchInput" 
+            class="search-input" 
+            placeholder="Buscar audífonos, teclados, mouses..." 
+            autocomplete="off">
+          <button class="clear-search-btn" id="clearSearchBtn" aria-label="Limpiar búsqueda" hidden>✕</button>
+        </div>
+        <div class="autocomplete-dropdown" id="autocompleteResults" role="listbox" hidden></div>
+      </div>
+
+      <!-- Acciones de Usuario -->
+      <div class="header-actions">
+        <!-- Botón Mi Cuenta -->
+        <a href="cuenta.html" class="icon-btn" aria-label="Mi Cuenta y Pedidos" title="Mi Cuenta / Pedidos">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+        </a>
+
+        <button class="icon-btn" id="wishlistBtn" aria-label="Ver lista de deseos" title="Favoritos">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+          </svg>
+          <span class="action-counter" id="wishlistCount">0</span>
+        </button>
+
+        <button class="cart-btn" id="cartBtn" aria-label="Abrir carrito de compras">
+          <div class="cart-icon-wrapper">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="9" cy="21" r="1"></circle>
+              <circle cx="20" cy="21" r="1"></circle>
+              <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+            </svg>
+            <span class="cart-counter" id="cartCount">0</span>
+          </div>
+          <div class="cart-total-preview hide-mobile">
+            <span class="cart-label">Carrito</span>
+            <span class="cart-amount" id="cartTotalHeader">$0.00 MXN</span>
+          </div>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ========================================================== -->
+  <!-- 3. CUERPO PRINCIPAL DEL PRODUCTO (PDP)                     -->
+  <!-- ========================================================== -->
+  <main class="container pdp-main-section" id="productPageMain">
+    
+    <!-- Migas de Pan (Breadcrumbs) -->
+    <nav class="breadcrumbs" aria-label="Ruta de navegación" style="margin-bottom:1.5rem;">
+      <ol>
+        <li><a href="index.html">Inicio</a></li>
+        <li aria-hidden="true">/</li>
+        <li><a href="catalogo.html">Catálogo</a></li>
+        <li aria-hidden="true">/</li>
+        <li><a href="catalogo.html" id="pdpCategoryBreadcrumb">Periféricos</a></li>
+        <li aria-hidden="true">/</li>
+        <li aria-current="page" id="pdpTitleBreadcrumb">Cargando producto...</li>
+      </ol>
+    </nav>
+
+    <!-- Layout Dividido: Galería con Zoom + Panel de Compra -->
+    <div class="pdp-layout-grid">
+      
+      <!-- ======================================================== -->
+      <!-- COLUMNA IZQUIERDA: GALERÍA DE IMÁGENES CON ZOOM         -->
+      <!-- ======================================================== -->
+      <div class="pdp-gallery-column">
+        
+        <!-- Contenedor Principal de la Imagen con Lupa de Zoom -->
+        <div class="gallery-main-display" id="galleryMainDisplay">
+          <div class="zoom-lens" id="zoomLens"></div>
+          <img id="galleryMainImg" src="" alt="Vista principal del producto" class="gallery-main-img">
+          
+          <div class="zoom-hint-badge hide-mobile">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              <line x1="11" y1="8" x2="11" y2="14"></line>
+              <line x1="8" y1="11" x2="14" y2="11"></line>
+            </svg>
+            <span>Pasa el cursor para hacer zoom</span>
+          </div>
+        </div>
+
+        <!-- Tira de Miniaturas Multiperspectiva -->
+        <div class="gallery-thumbs-strip" id="galleryThumbsStrip" role="tablist" aria-label="Vistas del producto">
+          <!-- Generado dinámicamente con JS -->
+        </div>
+
+      </div>
+
+      <!-- ======================================================== -->
+      <!-- COLUMNA DERECHA: INFORMACIÓN, VARIANTES, ENVÍO Y COMPRA -->
+      <!-- ======================================================== -->
+      <div class="pdp-info-column">
+        
+        <div class="pdp-meta-top">
+          <span class="pdp-brand-tag" id="pdpBrand">MARCA</span>
+          <div class="pdp-reviews-badge" id="pdpReviewsBadge" onclick="document.getElementById('tabReviewsBtn').click(); document.getElementById('pdpTabsSection').scrollIntoView({behavior:'smooth'});">
+            <span>★</span>
+            <strong id="pdpRatingNum">4.9</strong>
+            <span id="pdpReviewsCountText">(142 opiniones)</span>
+          </div>
+        </div>
+
+        <h1 class="pdp-product-title" id="pdpTitle">Cargando producto...</h1>
+
+        <p class="pdp-short-desc" id="pdpShortDesc">
+          Cargando especificaciones y beneficios del accesorio...
+        </p>
+
+        <!-- Tarjeta de Precios y Pagos -->
+        <div class="pdp-price-card">
+          <div class="pdp-price-row">
+            <span class="pdp-current-price" id="pdpCurrentPrice">$0.00 MXN</span>
+            <span class="pdp-original-price" id="pdpOriginalPrice"></span>
+            <span class="pdp-savings-badge" id="pdpSavingsBadge" hidden>-0%</span>
+          </div>
+          <div class="pdp-finance-note">
+            <span>💳</span>
+            <strong id="pdpMsiNote">Hasta 6 MSI sin tarjeta de crédito</strong>
+          </div>
+          <div class="pdp-tax-note">Precios expresados en Pesos Mexicanos (MXN) con IVA incluido.</div>
+        </div>
+
+        <!-- Variantes dinámicas del producto (renders desde product.variants) -->
+        <div id="pdpVariantsContainer"></div>
+
+        <!-- Selectores de Variantes estáticos (se ocultan cuando hay variantes reales) -->
+        <div class="pdp-variant-group" id="variantSwitchesGroup" hidden>
+          <div class="variant-label-row">
+            <span class="variant-label-title">Tipo de Switch / Modelo:</span>
+            <span class="variant-selected-value" id="selectedVariantSwitchLabel">Gateron Red (Lineal Silencioso)</span>
+          </div>
+          <div class="variant-options-list" id="variantSwitchesList">
+            <button class="variant-pill-btn active-variant" data-switch="red">🔴 Red (Lineal)</button>
+            <button class="variant-pill-btn" data-switch="brown">🟤 Brown (Táctil)</button>
+            <button class="variant-pill-btn" data-switch="blue">🔵 Blue (Clicky)</button>
+          </div>
+        </div>
+
+        <div class="pdp-variant-group" hidden>
+          <div class="variant-label-row">
+            <span class="variant-label-title">Color del Chasis:</span>
+            <span class="variant-selected-value" id="selectedVariantColorLabel">Negro Obsidiana</span>
+          </div>
+          <div class="variant-options-list" id="variantColorsList">
+            <button class="variant-pill-btn active-variant" data-color="Negro Obsidiana">
+              <span class="variant-color-dot" style="background:#0b0f17;"></span> Negro Obsidiana
+            </button>
+            <button class="variant-pill-btn" data-color="Blanco Ártico">
+              <span class="variant-color-dot" style="background:#f8fafc;"></span> Blanco Ártico
+            </button>
+            <button class="variant-pill-btn" data-color="Cyber Purple">
+              <span class="variant-color-dot" style="background:#9d4edd;"></span> Cyber Purple
+            </button>
+          </div>
+        </div>
+
+        <!-- Selector de Cantidad y Acciones de Compra -->
+        <div class="pdp-actions-row">
+          <div class="pdp-qty-stepper">
+            <button class="pdp-qty-btn" id="pdpQtyMinus" aria-label="Disminuir">-</button>
+            <input type="text" id="pdpQtyInput" class="pdp-qty-input" value="1" readonly aria-label="Cantidad">
+            <button class="pdp-qty-btn" id="pdpQtyPlus" aria-label="Aumentar">+</button>
+          </div>
+
+          <button class="btn btn-primary pdp-btn-add" id="pdpAddToCartBtn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="9" cy="21" r="1"></circle>
+              <circle cx="20" cy="21" r="1"></circle>
+              <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+            </svg>
+            <span>Agregar al Carrito</span>
+          </button>
+
+          <button class="pdp-btn-buy" id="pdpBuyNowBtn">
+            Comprar Ahora
+          </button>
+        </div>
+
+        <!-- Calculador de Envío por Código Postal (CP México) -->
+        <div class="pdp-shipping-calculator">
+          <div class="shipping-calc-header">
+            <span>🚚</span>
+            <span>Calcula el costo y fecha de entrega con tu C.P.:</span>
+          </div>
+          <div class="shipping-calc-input-row">
+            <input type="text" id="shippingCpInput" class="shipping-calc-input" placeholder="Ej: 86035 o 06700" maxlength="5">
+            <button class="shipping-calc-btn" id="calculateShippingBtn">Calcular</button>
+          </div>
+          <div class="shipping-calc-result" id="shippingCalcResult">
+            Ingresa tu código postal para conocer costos y fecha estimada de entrega o retiro en Villahermosa.
+          </div>
+        </div>
+
+        <!-- Insignias de Confianza Rápidas -->
+        <div class="pdp-trust-pills">
+          <div class="pdp-trust-pill">
+            <span>🛡️</span>
+            <span><strong>12 Meses</strong> de Garantía</span>
+          </div>
+          <div class="pdp-trust-pill">
+            <span>📍</span>
+            <span>Retiro <strong>GRATIS</strong> en Villahermosa</span>
+          </div>
+          <div class="pdp-trust-pill">
+            <span>🔄</span>
+            <span><strong>30 Días</strong> para Devolución</span>
+          </div>
+          <div class="pdp-trust-pill">
+            <span>🔒</span>
+            <span>Pago Seguro <strong>OXXO & Tarjetas</strong></span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- ========================================================== -->
+    <!-- 4. PESTAÑAS: DESCRIPCIÓN, SPECS, RESEÑAS Y POLÍTICAS       -->
+    <!-- ========================================================== -->
+    <section class="pdp-tabs-container" id="pdpTabsSection">
+      
+      <div class="pdp-tabs-nav" role="tablist">
+        <button class="pdp-tab-trigger active-tab" data-tab="desc" role="tab" aria-selected="true">
+          Descripción Detallada
+        </button>
+        <button class="pdp-tab-trigger" data-tab="specs" role="tab" aria-selected="false">
+          Ficha Técnica & Specs
+        </button>
+        <button class="pdp-tab-trigger" id="tabReviewsBtn" data-tab="reviews" role="tab" aria-selected="false">
+          Reseñas y Opiniones (<span id="tabReviewsCount">0</span>)
+        </button>
+        <button class="pdp-tab-trigger" data-tab="shipping" role="tab" aria-selected="false">
+          Envíos & Villahermosa Pick-up
+        </button>
+      </div>
+
+      <!-- Panel 1: Descripción -->
+      <div class="pdp-tab-content-panel active-panel" id="panelDesc" role="tabpanel">
+        <div style="line-height:1.7; font-size:0.95rem; color:var(--text-secondary); max-width:850px;">
+          <h3 style="font-size:1.35rem; font-weight:800; color:var(--text-primary); margin-bottom:1rem;" id="descFullHeading">
+            Alto rendimiento para videojuegos y productividad académica
+          </h3>
+          <p id="descFullBody" style="margin-bottom:1.25rem;"></p>
+          
+          <h4 style="font-size:1.1rem; font-weight:700; color:var(--text-primary); margin-bottom:0.75rem;">
+            ¿Por qué es ideal para jóvenes en México?
+          </h4>
+          <ul style="list-style:disc; margin-left:1.5rem; display:flex; flex-direction:column; gap:0.5rem;">
+            <li><strong>Relación Calidad-Precio Superior:</strong> Materiales duraderos que resisten horas de estudio y juego sin pagar sobreprecios de marcas genéricas.</li>
+            <li><strong>Ergonomía Pensada en tu Postura:</strong> Diseñado para reducir la fatiga en muñecas, cuello y dedos durante entregas de proyectos universitarios.</li>
+            <li><strong>Compatibilidad Total:</strong> Funciona directamente en Windows 11, macOS, consolas (PlayStation, Xbox, Switch) y celulares sin drivers complicados.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Panel 2: Especificaciones Técnicas -->
+      <div class="pdp-tab-content-panel" id="panelSpecs" role="tabpanel">
+        <table class="specs-table" id="pdpSpecsTable">
+          <!-- Renderizado dinámicamente con JS -->
+        </table>
+      </div>
+
+      <!-- Panel 3: Reseñas y Calificaciones -->
+      <div class="pdp-tab-content-panel" id="panelReviews" role="tabpanel">
+        <div class="reviews-section-grid">
+          
+          <!-- Puntuación General y Desglose -->
+          <div class="reviews-score-card">
+            <div class="score-big-num" id="reviewsScoreBig">4.9</div>
+            <div class="score-stars-row">★★★★★</div>
+            <div class="score-total-reviews" id="reviewsTotalSummary">Basado en 142 valoraciones verificadas</div>
+
+            <div class="star-breakdown-row">
+              <span>5 ★</span>
+              <div class="star-breakdown-bar"><div class="star-breakdown-fill" style="width: 88%;"></div></div>
+              <span>88%</span>
+            </div>
+            <div class="star-breakdown-row">
+              <span>4 ★</span>
+              <div class="star-breakdown-bar"><div class="star-breakdown-fill" style="width: 10%;"></div></div>
+              <span>10%</span>
+            </div>
+            <div class="star-breakdown-row">
+              <span>3 ★</span>
+              <div class="star-breakdown-bar"><div class="star-breakdown-fill" style="width: 2%;"></div></div>
+              <span>2%</span>
+            </div>
+            <div class="star-breakdown-row">
+              <span>2 ★</span>
+              <div class="star-breakdown-bar"><div class="star-breakdown-fill" style="width: 0%;"></div></div>
+              <span>0%</span>
+            </div>
+            <div class="star-breakdown-row">
+              <span>1 ★</span>
+              <div class="star-breakdown-bar"><div class="star-breakdown-fill" style="width: 0%;"></div></div>
+              <span>0%</span>
+            </div>
+
+            <!-- Formulario Dejar Reseña -->
+            <div class="write-review-box">
+              <h4 class="write-review-title">Escribe tu opinión</h4>
+              <form id="addReviewForm" onsubmit="event.preventDefault(); window.submitNewReview();">
+                <div class="review-form-group">
+                  <label for="reviewAuthorInput">Tu nombre y ciudad:</label>
+                  <input type="text" id="reviewAuthorInput" class="review-form-input" placeholder="Ej: Rodrigo G. (Villahermosa)" required>
+                </div>
+                <div class="review-form-group">
+                  <label for="reviewRatingSelect">Calificación:</label>
+                  <select id="reviewRatingSelect" class="review-form-input">
+                    <option value="5">★★★★★ (5 estrellas - Excelente)</option>
+                    <option value="4">★★★★☆ (4 estrellas - Muy bueno)</option>
+                    <option value="3">★★★☆☆ (3 estrellas - Regular)</option>
+                  </select>
+                </div>
+                <div class="review-form-group">
+                  <label for="reviewCommentInput">Comentario:</label>
+                  <textarea id="reviewCommentInput" class="review-form-textarea" placeholder="¿Qué te pareció el empaque, switches, sonido o entrega?" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Publicar Reseña</button>
+              </form>
+            </div>
+          </div>
+
+          <!-- Lista de Opiniones de Clientes -->
+          <div class="customer-reviews-list" id="customerReviewsList">
+            <!-- Rellenado con JS -->
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Panel 4: Políticas de Envío y Devolución -->
+      <div class="pdp-tab-content-panel" id="panelShipping" role="tabpanel">
+        <div style="line-height:1.7; font-size:0.95rem; color:var(--text-secondary); max-width:850px;">
+          <h3 style="font-size:1.25rem; font-weight:800; color:var(--text-primary); margin-bottom:0.75rem;">
+            Envíos Nacionales e Información de Retiro Local
+          </h3>
+          <p style="margin-bottom:1rem;">
+            En <strong>NEXUS GEAR MX</strong> procesamos todos los pedidos en un plazo máximo de 24 horas hábiles.
+          </p>
+          <ul style="list-style:disc; margin-left:1.5rem; display:flex; flex-direction:column; gap:0.65rem; margin-bottom:1.5rem;">
+            <li><strong>Envío Gratis a todo México:</strong> Automático en carritos de $999 MXN o más vía FedEx o DHL Express (tiempo promedio de entrega: 2 a 4 días hábiles).</li>
+            <li><strong>Punto Aliado Villahermosa (Tabasco 2000):</strong> Retira sin costo alguno en Plaza Atenas de lunes a sábado de 11:00 a 19:00 hrs. Tu pedido estará listo en 2 horas tras confirmar tu orden.</li>
+            <li><strong>Garantía de Satisfacción de 30 Días:</strong> Si el producto no cumple tus expectativas o presenta algún defecto de fábrica, tramitamos tu cambio inmediato o reembolso sin costo.</li>
+          </ul>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ========================================================== -->
+    <!-- 5. PRODUCTOS RELACIONADOS Y RECOMENDADOS (CROSS-SELLING)   -->
+    <!-- ========================================================== -->
+    <section class="home-section" aria-label="Productos complementarios">
+      <div class="section-header">
+        <div class="section-title-wrap">
+          <h2>Completa tu Setup</h2>
+          <p>Periféricos recomendados y complementarios para este producto.</p>
+        </div>
+        <a href="catalogo.html" class="section-link-more">
+          <span>Ver catálogo completo</span>
+          <span>→</span>
+        </a>
+      </div>
+
+      <div class="products-grid view-grid" id="relatedProductsGrid">
+        <!-- Renderizado dinámicamente con JS -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================================================== -->
+  <!-- BARRA FIJA MÓVIL DE COMPRA RÁPIDA (STICKY MOBILE CTA)      -->
+  <!-- ========================================================== -->
+  <aside class="mobile-sticky-pdp-bar" aria-label="Acciones de compra móvil">
+    <div class="mobile-sticky-price-info">
+      <span class="mobile-sticky-price" id="mobileStickyPrice">$0.00 MXN</span>
+      <span class="mobile-sticky-msi">Hasta 6 MSI</span>
+    </div>
+    <button class="btn btn-primary" id="mobileStickyAddBtn" onclick="document.getElementById('pdpAddToCartBtn').click();">
+      Agregar al Carrito
+    </button>
+  </aside>
+
+  <!-- ========================================================== -->
+  <!-- DRAWER DEL CARRITO DE COMPRAS                              -->
+  <!-- ========================================================== -->
+  <div class="cart-drawer-overlay" id="cartDrawerOverlay" hidden>
+    <aside class="cart-drawer" id="cartDrawer" role="dialog" aria-modal="true" aria-label="Carrito de compras">
+      <div class="drawer-header">
+        <div class="drawer-title-wrap">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="9" cy="21" r="1"></circle>
+            <circle cx="20" cy="21" r="1"></circle>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+          </svg>
+          <h3>Tu Carrito (<span id="cartDrawerCount">0</span>)</h3>
+        </div>
+        <button class="drawer-close-btn" id="closeCartDrawerBtn" aria-label="Cerrar carrito">✕</button>
+      </div>
+
+      <div class="free-shipping-meter">
+        <div class="meter-text" id="freeShippingMeterText">
+          Agrega <strong>$999 MXN</strong> para obtener <strong>Envío Gratis</strong>
+        </div>
+        <div class="meter-bar-track">
+          <div class="meter-bar-fill" id="freeShippingBarFill" style="width: 0%;"></div>
+        </div>
+      </div>
+
+      <div class="drawer-items-list" id="cartDrawerItems"></div>
+
+      <div class="drawer-footer" id="cartDrawerFooter">
+        <div class="drawer-summary-row">
+          <span>Subtotal</span>
+          <span class="subtotal-val" id="cartDrawerSubtotal">$0.00 MXN</span>
+        </div>
+        <div class="drawer-summary-row shipping-row">
+          <span>Envío estimado</span>
+          <span class="shipping-val" id="cartDrawerShipping">Calculado en checkout</span>
+        </div>
+        <div class="drawer-summary-row total-row">
+          <span>Total estimado</span>
+          <span class="total-val" id="cartDrawerTotal">$0.00 MXN</span>
+        </div>
+
+        <div class="drawer-actions">
+          <button class="btn btn-primary btn-block checkout-btn" id="goToCheckoutBtn">
+            <span>Continuar al Pago</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </button>
+          <a href="carrito.html" class="btn btn-outline btn-block" style="text-align:center;">
+            Ver Carrito Detallado
+          </a>
+          <button class="btn btn-outline btn-block" id="continueShoppingBtn">Seguir explorando</button>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <div class="toast-container" id="toastContainer" aria-live="polite"></div>
+
+  <!-- ========================================================== -->
+  <!-- PIE DE PÁGINA (FOOTER)                                     -->
+  <!-- ========================================================== -->
+  <footer class="main-footer">
+    <div class="container footer-top-grid">
+      <div class="footer-col brand-col">
+        <div class="footer-logo">
+          <span class="brand-name">NEXUS<span class="highlight">GEAR</span></span>
+          <span class="brand-tag">MÉXICO</span>
+        </div>
+        <p class="footer-desc">
+          E-commerce especializado en periféricos de alto rendimiento para gaming competitivo y productividad estudiantil en México.
+        </p>
+        <div class="local-presence">
+          <span class="icon">📍</span>
+          <span><strong>Punto Aliado Villahermosa:</strong> Plaza Atenas, Tabasco 2000. Recoge de Lun a Sáb de 11:00 a 19:00 hrs.</span>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-heading">Categorías</h4>
+        <ul class="footer-links">
+          <li><a href="catalogo.html?cat=audifonos">Audífonos Gamer 7.1</a></li>
+          <li><a href="catalogo.html?cat=teclados">Teclados Mecánicos Hot-Swap</a></li>
+          <li><a href="catalogo.html?cat=mouses">Mouses Ultraligeros</a></li>
+          <li><a href="catalogo.html?cat=mousepads">Mousepads XXL Speed</a></li>
+          <li><a href="catalogo.html?cat=streaming">Micrófonos & Luces LED</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-heading">Servicio al Cliente</h4>
+        <ul class="footer-links">
+          <li><a href="cuenta.html">Rastrea tu pedido (Guía)</a></li>
+          <li><a href="index.html#villahermosa">Entregas en Villahermosa</a></li>
+          <li><a href="index.html#estudiantes">Descuento para Estudiantes</a></li>
+          <li><a href="ayuda.html#terminos">Políticas de Garantía y Devolución</a></li>
+          <li><a href="ayuda.html#faqSection">Preguntas Frecuentes (FAQ)</a></li>
+          <li><a href="ayuda.html">Centro de Ayuda & Soporte</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col newsletter-col">
+        <h4 class="footer-heading">Únete al Clan Nexus</h4>
+        <p class="newsletter-sub">Recibe <strong>$100 MXN de descuento</strong> en tu primera compra.</p>
+        <form class="newsletter-form">
+          <div class="newsletter-input-group">
+            <input type="email" placeholder="Tu correo electrónico..." required aria-label="Correo">
+            <button type="submit" class="btn btn-accent">Unirme</button>
+          </div>
+        </form>
+        <div class="payment-methods-icons">
+          <span class="pay-badge">VISA</span>
+          <span class="pay-badge">Mastercard</span>
+          <span class="pay-badge">OXXO Pay</span>
+          <span class="pay-badge">SPEI</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container footer-bottom-flex">
+        <p class="copyright">© 2026 NEXUS GEAR MX. Proyecto Académico de Comercio Electrónico.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Script Principal -->
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
